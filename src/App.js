@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import image from "./comp/image.jpeg";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import storage from "local-storage-fallback";
 import style from "styled-theming";
@@ -34,7 +33,7 @@ function App() {
         <GlobalStyle />
         <div className="App">
           <h1>Trying!!!</h1>
-          <h2>Duniya MC thi, hai aur rhegi!!!</h2>
+          <h2>Lorem Ipsum Lorem Ipsum Lorem Ipsum</h2>
           <ToggleMode />
           <button
             onClick={(e) =>
