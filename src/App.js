@@ -10,9 +10,15 @@ body{
   color: ${(props) => (props.theme.mode === "dark" ? "#EEE" : "#111")}
 }
 `;
-
+const getInitialTheme = () => {
+  const savedTheme = storage.getItem("theme");
+  return savedTheme ? JSON.parse(savedTheme) : { mode: "light" };
+};
 function App() {
   const [theme, setTheme] = useState({ mode: "light" });
+  useEffect(() => {
+    storage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
   return (
     <ThemeProvider theme={theme}>
       <>
