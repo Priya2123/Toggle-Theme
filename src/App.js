@@ -4,6 +4,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import storage from "local-storage-fallback";
 import style from "styled-theming";
 import useTheme from "./useTheme";
+import ToggleMode from "./ToggleMode";
 
 const getBackground = style("mode", {
   light: "#EEE",
@@ -34,17 +35,7 @@ function App() {
         <div className="App">
           <h1>Trying!!!</h1>
           <h2>Duniya MC thi, hai aur rhegi!!!</h2>
-          <button
-            onClick={(e) =>
-              theme.setTheme(
-                theme.mode === "dark"
-                  ? { ...theme, mode: "light" }
-                  : { ...theme, mode: "dark" }
-              )
-            }
-          >
-            Toggle Theme
-          </button>
+          <ToggleMode />
           <button
             onClick={(e) =>
               theme.setTheme(

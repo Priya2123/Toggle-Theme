@@ -4,11 +4,11 @@ import storage from "local-storage-fallback";
 export default function useTheme(
   defaultTheme = { mode: "light", textZoom: "normal" }
 ) {
-  const [theme, _setTheme] = useState(getInitialTheme);
   const getInitialTheme = () => {
     const savedTheme = storage.getItem("theme");
     return savedTheme ? JSON.parse(savedTheme) : defaultTheme;
   };
+  const [theme, _setTheme] = useState(getInitialTheme);
   useEffect(() => {
     storage.setItem("theme", JSON.stringify(theme));
   }, [theme]);
