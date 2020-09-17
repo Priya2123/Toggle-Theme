@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import image from "./comp/image.jpeg";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import storage from "local-storage-fallback";
+
+const GlobalStyle = createGlobalStyle`
+body{ 
+  background-color: ${(props) =>
+    props.theme.mode === "dark" ? "#111" : "#EEE"};
+  color: ${(props) => (props.theme.mode === "dark" ? "#EEE" : "#111")}
+}
+`;
 
 function App() {
+  const [theme, setTheme] = useState({ mode: "light" });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyle />
+        <div className="App">
+          <h1>Trying!!!</h1>
+          <h2>
+            Fuck offfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+          </h2>
+          <button
+            onClick={(e) =>
+              setTheme(
+                theme.mode === "dark" ? { mode: "light" } : { mode: "dark" }
+              )
+            }
+          >
+            Toggle Theme
+          </button>
+        </div>
+      </>
+    </ThemeProvider>
   );
 }
 
