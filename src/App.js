@@ -3,6 +3,7 @@ import image from "./comp/image.jpeg";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import storage from "local-storage-fallback";
 import style from "styled-theming";
+import useTheme from "./useTheme";
 
 const getBackground = style("mode", {
   light: "#EEE",
@@ -23,17 +24,9 @@ body{
   font-size: ${getFontsize};
 }
 `;
-const getInitialTheme = () => {
-  const savedTheme = storage.getItem("theme");
-  return savedTheme
-    ? JSON.parse(savedTheme)
-    : { mode: "light", textZoom: "normal" };
-};
+
 function App() {
-  const [theme, setTheme] = useState({ mode: "light" });
-  useEffect(() => {
-    storage.setItem("theme", JSON.stringify(theme));
-  }, [theme]);
+  const theme = useTheme();
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -43,7 +36,7 @@ function App() {
           <h2>Duniya MC thi, hai aur rhegi!!!</h2>
           <button
             onClick={(e) =>
-              setTheme(
+              theme.setTheme(
                 theme.mode === "dark"
                   ? { ...theme, mode: "light" }
                   : { ...theme, mode: "dark" }
@@ -54,7 +47,7 @@ function App() {
           </button>
           <button
             onClick={(e) =>
-              setTheme(
+              theme.setTheme(
                 theme.textZoom === "normal"
                   ? { ...theme, textZoom: "magnify" }
                   : { ...theme, textZoom: "normal" }
